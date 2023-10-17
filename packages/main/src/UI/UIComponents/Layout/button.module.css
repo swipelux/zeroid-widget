@@ -1,0 +1,54 @@
+.btn {
+  font-family: Inter, sans-serif;
+  padding: 20px 32px;
+  border-radius: 8px;
+  background: var(--main);
+  color: var(--textBtn);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  cursor: pointer;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  border: none;
+  gap: 8px;
+}
+
+.btn:hover {
+  background: var(--btnBodyHover);
+}
+
+.btn:active {
+  background: var(--btnBodyPressed);
+  border: none;
+}
+
+.btn:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--mainFocus);
+}
+
+.loader {
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+  border: 2px solid var(--textBtn);
+  border-color: var(--textBtn) transparent var(--textBtn) transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

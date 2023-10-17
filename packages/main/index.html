@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      window.require = () => {};
+    </script>
+    <script type="module">
+      import { Buffer } from 'buffer';
+      import process from 'process';
+      window.Buffer = Buffer;
+      window.process = process;
+    </script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Swipelux Zero Id</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+            background: #16161D;
+        }
+    </style>
+  </head>
+  <body>
+    <div class='wrapper'>
+      <div id="root"></div>
+    </div>
+    <script type="module" src="src/main.tsx"></script>
+  </body>
+</html>

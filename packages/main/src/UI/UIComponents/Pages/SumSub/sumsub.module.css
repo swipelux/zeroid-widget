@@ -1,0 +1,30 @@
+.wrapper {
+  max-height: calc(602px - 96px - 44px);
+  overflow: auto;
+}
+
+/* width */
+.wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+.wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+.wrapper::-webkit-scrollbar-thumb {
+  background: var(--main);
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+.wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--textBodyMain);
+}
+
+.wrapper::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+  margin-bottom: 12px;
+}

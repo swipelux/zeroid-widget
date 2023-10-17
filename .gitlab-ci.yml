@@ -1,0 +1,102 @@
+include:
+  - project: "swipelux/ci-cd"
+    ref: "master"
+    file:
+      - "parent-build-pipeline-v1.yml"
+
+stages:
+  - version
+  - build
+  - build-deploy-dev
+  - notify-slack-dev
+  - build-deploy-prod
+  - notify-slack-prod
+
+build:
+  stage: build
+  image: node:18.16.1
+  tags:
+    - docker
+  before_script:
+    - git add .
+    - git reset --hard
+  script:
+    - yarn install
+    - yarn build
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development"
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    - when: always
+
+build-deploy-dev:
+  stage: build-deploy-dev
+  needs:
+    - version
+  tags:
+    - shell
+  before_script:
+    - git add .
+    - git reset --hard
+  script:
+    - yarn install
+    - yarn build
+    - aws s3 cp ./dist/ s3://swipelux-sbt-frontend-dev-s3/ --recursive --include "*" --cache-control no-cache
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development"
+    - when: never
+
+notify-slack-dev:
+  stage: notify-slack-dev
+  needs:
+    - build-deploy-dev
+  tags:
+    - shell
+  variables:
+    SLACK_CHANNEL: "#releases"
+    ENV: dev
+  script:
+    - aws configure set region ${AWS_DEFAULT_REGION}
+    - aws s3 cp ${SLACK_SENDER_S3_URI} ops/
+    - python3 ops/slack_sender.py
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development"
+      when: on_success
+    - when: never
+
+build-deploy-prod:
+  stage: build-deploy-prod
+  needs:
+    - build-deploy-dev
+  tags:
+    - shell
+  before_script:
+    - git add .
+    - git reset --hard
+  script:
+    - yarn install
+    - yarn build prod
+    - aws s3 cp ./dist/ s3://swipelux-sbt-frontend-prod-s3/ --recursive --include "*" --cache-control no-cache
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development"
+      when: manual
+    - when: never
+
+notify-slack-prod:
+  stage: notify-slack-prod
+  needs:
+    - build-deploy-prod
+  tags:
+    - shell
+  variables:
+    SLACK_CHANNEL: "#releases"
+    ENV: prod
+  script:
+    - aws configure set region ${AWS_DEFAULT_REGION}
+    - aws s3 cp ${SLACK_SENDER_S3_URI} ops/
+    - python3 ops/slack_sender.py
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development"
+      when: on_success
+    - when: never

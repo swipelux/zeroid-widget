@@ -1,0 +1,13 @@
+{
+  "name": "transport",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@types/uuid": "^9.0.5",
+    "prettier": "^3.0.1",
+    "tslint": "^6.1.3",
+    "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
+  }
+}

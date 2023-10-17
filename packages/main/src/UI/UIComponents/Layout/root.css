@@ -1,0 +1,34 @@
+:root {
+  --web-sides-padding: 32px;
+  --mobile-sides-padding: 24px;
+
+  --main: hsla(0, 0%, 2%, 1);
+  --background: hsla(0, 0%, 100%, 1);
+
+  --btnBodyHover: hsla(0, 0%, 12%, 1);
+  --btnBodyPressed: hsla(0, 0%, 2%, 1);
+  --mainFocus: hsla(0, 0%, 2%, 0.3);
+  --btnSecondDefault: hsla(0, 0%, 2%, 0.1);
+  --btnSecondHover: hsla(0, 0%, 2%, 0.2);
+  --btnSecondPressed: hsla(0, 0%, 2%, 0.3);
+  --textBtn: #fff;
+  --textBodyMain: #000;
+  --textBodyAdd: #616161;
+  --textBodyPlaceholder: rgba(0, 0, 0, 0.2);
+  --bordersDefault: rgba(0, 0, 0, 0.1);
+  --bordersHover: #000;
+  --dieDefault: rgba(0, 0, 0, 0.04);
+  --dieHover: rgba(0, 0, 0, 0.08);
+  --textBodySw: rgba(0, 0, 0, 0.6);
+
+  --processing: #ffa400;
+  --warning: #ed0a34;
+  --success: #58cb4e;
+}
+
+h1,
+h2,
+p,
+span {
+  margin: 0;
+}
