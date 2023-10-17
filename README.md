@@ -26,8 +26,8 @@ To initialize it:
 
 Example:
 
-<img src="public/storage_1.png">
-<img src="public/storage_2.png">
+<img width="500px" src="public/storage_1.png">
+<img width="500px" src="public/storage_2.png">
 
 ## API
 
