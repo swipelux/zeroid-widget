@@ -23,6 +23,12 @@ export class AsyncRequest {
     this.messenger.subscribe((message) => {
       const promiseHandlers = this.requests.get(message.type);
       if (promiseHandlers) {
+        if (message.error) {
+          promiseHandlers.reject(message.error);
+          this.requests.delete(message.type);
+          return;
+        }
+
         promiseHandlers.resolve(message.payload);
         this.requests.delete(message.type);
       }

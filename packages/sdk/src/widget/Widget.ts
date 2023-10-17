@@ -14,6 +14,10 @@ export class Widget {
     return this.asyncRequest.send('getKeys');
   }
 
+  hasAuth() {
+    return this.asyncRequest.send('checkAuth');
+  }
+
   addCredential(key: string, value: string) {
     return this.asyncRequest.send('setKey', { key, value });
   }

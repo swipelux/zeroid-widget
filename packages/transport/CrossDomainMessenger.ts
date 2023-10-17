@@ -1,6 +1,7 @@
 export interface Message<T = unknown> {
   type: string;
   payload: T;
+  error?: unknown;
 }
 
 export class CrossDomainMessenger {

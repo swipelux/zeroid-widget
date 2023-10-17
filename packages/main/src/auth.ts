@@ -61,9 +61,7 @@ export async function getValues() {
     headers: {
       'Content-type': 'application/json',
     },
-  }).then((res) => {
-    return res.json();
-  });
+  }).then(handleResponse);
 }
 
 export async function getValue(key: string) {
@@ -73,13 +71,7 @@ export async function getValue(key: string) {
     headers: {
       'Content-type': 'application/json',
     },
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      throw res.json();
-    }
-  });
+  }).then(handleResponse);
 }
 
 export async function setValue(dto: { key: string; value: string }) {
@@ -90,9 +82,7 @@ export async function setValue(dto: { key: string; value: string }) {
       'Content-type': 'application/json',
     },
     body: JSON.stringify(dto),
-  }).then((res) => {
-    return res.json();
-  });
+  }).then(handleResponse);
 }
 
 export async function checkAuth() {
@@ -107,7 +97,7 @@ export async function checkAuth() {
     if (res.ok) {
       return true;
     } else {
-      throw res.json();
+      throw new Error('Not authorized');
     }
   });
 }
@@ -147,4 +137,12 @@ async function ethereumProviderAndAddress(): Promise<[SDKProvider, string]> {
       return;
     }
   });
+}
+
+async function handleResponse(response: Response) {
+  if (!response.ok) {
+    throw await response.json();
+  }
+
+  return response.json();
 }

@@ -9,13 +9,20 @@ export class AsyncResponse {
     });
   }
 
-  private sendResponseToParent(event: MessageEvent, method: () => Promise<unknown>) {
-    method().then((value) => {
-      this.send(event.data.type, value, event.origin);
-    });
+  private sendResponseToParent(
+    event: MessageEvent,
+    method: () => Promise<unknown>
+  ) {
+    method()
+      .then((value) => {
+        this.send(event.data.type, value, undefined, event.origin);
+      })
+      .catch((error) => {
+        this.send(event.data.type, undefined, error, event.origin);
+      });
   }
 
-  send(type: string, payload?: any, origin = '*') {
-    window.parent.postMessage({ type, payload }, origin);
+  send(type: string, payload?: any, error?: unknown, origin = '*') {
+    window.parent.postMessage({ type, payload, error }, origin);
   }
 }

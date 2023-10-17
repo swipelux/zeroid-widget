@@ -41,6 +41,8 @@ Example:
         const openAIKey = res.value;
         // You can now use your openAIKey to call 3rd party services
         console.log(openAIKey);
+    }).catch(err => {
+        console.log(err);
     });
 </script>
 ```
