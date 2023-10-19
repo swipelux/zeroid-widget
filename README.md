@@ -8,15 +8,20 @@
 
 ### Install
 
-Just add the script tag to your head section
+Just add the script tag to your head section of your HTML page.
 
 ```html
-<head>
-  ...
-  
-  <script src="https://zeroid.swipelux.com/sdk.js"></script>
-  ...
-</head>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Your site</title>
+        <script src="https://zeroid.swipelux.com/sdk.js"></script>
+    </head>
+    <body>
+    </body>
+</html>
+
 ```
 
 ### Display widget
@@ -24,30 +29,42 @@ Just add the script tag to your head section
 In the body section, add an HTML element for the widget to get placed to.
 
 ```html
-<body>
-  ...
-  <!-- div with sample id for the widget placement in further -->
-  <div id="widget-here"></div>
-  ...
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Your site</title>
+        <script src="https://zeroid.swipelux.com/sdk.js"></script>
+    </head>
+    <body>
+        <!-- div with sample id for the widget placement in further -->
+        <div id="widget-here"></div>
+    </body>
+</html>
 ```
 
 Now you can make the widget shown
 
 ```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your site</title>
+    <script src="https://zeroid.swipelux.com/sdk.js"></script>
+</head>
 <body>
-  ...
-  <div id="widget-here"></div>
-  
-  <script>
-
+<!-- div with sample id for the widget placement in further -->
+<div id="widget-here"></div>
+<script>
+    
     const placeForWidget = document.getElementById("widget-here");
 
     const zeroID = ZeroIdSdk.initStorage(placeForWidget);
 
-  </script>
-
+</script>
 </body>
+</html>
 ```
 
 <img width="500px" src="public/storage_1.png">
@@ -58,7 +75,7 @@ When "My keys" button clicked for the first time click the Metamask signature re
 
 <img width="500px" src="public/sigrequest.png">
 
-It is being used to identify the user by wallet so then we can prepare a personal key bucket for you. <b>No fee is charged.</b>
+It is being used to identify the user by wallet, so then we can prepare a personal key bucket for you. <b>No fee is charged.</b>
 
 Once signed, the key management pop-up is shown,
 
@@ -74,15 +91,21 @@ your <b>OpenAI API Key</b>
 
 ### Use your keys in code
 
-After key is saved it can be retreived in code
+After key is saved it can be retrieved in code
 
 
 ```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your site</title>
+    <script src="https://zeroid.swipelux.com/sdk.js"></script>
+</head>
 <body>
-  ...
-  <div id="widget-here"></div>
-  
-  <script>
+<!-- div with sample id for the widget placement in further -->
+<div id="widget-here"></div>
+<script>
 
     const placeForWidget = document.getElementById("widget-here");
 
@@ -90,17 +113,16 @@ After key is saved it can be retreived in code
 
     // using you OpenAI key
     zeroID.openAIKey()
-       .then(res => res.value)
-       .then(
-          key => {
-            // your logic here
-          }
-        )
-        .catch(console.err);
-        
-  </script>
+            .then(res => res.value)
+            .then(openAIKey => {
+                // your logic here
+                
+            })
+            .catch(console.error);
 
+</script>
 </body>
+</html>
 ```
 
 ### Also 
