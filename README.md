@@ -8,15 +8,20 @@
 
 ### Install
 
-Just add the script tag to your head section
+Just add the script tag to your head section of your HTML page.
 
 ```html
-<head>
-  ...
-  
-  <script src="https://zeroid.swipelux.com/sdk.js"></script>
-  ...
-</head>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Your site</title>
+        <script src="https://zeroid.swipelux.com/sdk.js"></script>
+    </head>
+    <body>
+    </body>
+</html>
+
 ```
 
 ### Display widget
@@ -24,30 +29,42 @@ Just add the script tag to your head section
 In the body section, add an HTML element for the widget to get placed to.
 
 ```html
-<body>
-  ...
-  <!-- div with sample id for the widget placement in further -->
-  <div id="widget-here"></div>
-  ...
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Your site</title>
+        <script src="https://zeroid.swipelux.com/sdk.js"></script>
+    </head>
+    <body>
+        <!-- div with sample id for the widget placement in further -->
+        <div id="widget-here"></div>
+    </body>
+</html>
 ```
 
 Now you can make the widget shown
 
 ```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your site</title>
+    <script src="https://zeroid.swipelux.com/sdk.js"></script>
+</head>
 <body>
-  ...
-  <div id="widget-here"></div>
-  
-  <script>
-
+<!-- div with sample id for the widget placement in further -->
+<div id="widget-here"></div>
+<script>
+    
     const placeForWidget = document.getElementById("widget-here");
 
     const zeroID = ZeroIdSdk.initStorage(placeForWidget);
 
-  </script>
-
+</script>
 </body>
+</html>
 ```
 
 <img width="500px" src="public/storage_1.png">
@@ -74,16 +91,21 @@ his <b>OpenAI API Key</b>
 
 ### Use your keys in code
 
-After key is saved it can be retreived in code by the application developer
+After key is saved it can be retrieved in code by the application developer
 
 
 ```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your site</title>
+    <script src="https://zeroid.swipelux.com/sdk.js"></script>
+</head>
 <body>
-  ...
-  <div id="widget-here"></div>
-  
-  <script>
-    import {axios} from 'axios';
+<!-- div with sample id for the widget placement in further -->
+<div id="widget-here"></div>
+<script>
 
     const placeForWidget = document.getElementById("widget-here");
 
@@ -91,43 +113,16 @@ After key is saved it can be retreived in code by the application developer
 
     // using you OpenAI key
     zeroID.openAIKey()
-       .then(res => res.value)
-       .then(
-          key => generateTextFromPhrase(
-            "Once upon a time...", 
-            key
-          )
-        )
-        .catch(console.err);
-        
+            .then(res => res.value)
+            .then(openAIKey => {
+                // your logic here
+                
+            })
+            .catch(console.error);
 
-    function generateTextFromPhrase(phrase, apiKey) {
-      // Configure your request headers with your API key
-      const headers = {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      };
-
-      // Set up the data for the API request
-      const data = {
-        prompt: phrase,
-        max_tokens: 50, // Adjust the desired length of generated text
-        engine: 'davinci',
-      };
-
-      // Make a POST request to the OpenAI API
-      axios.post('https://api.openai.com/v1/engines/davinci/completions', data, { headers })
-        .then((response) => {
-          const generatedText = response.data.choices[0].text;
-          console.log('Generated Text:', generatedText);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-      }     
-  </script>
-
+</script>
 </body>
+</html>
 ```
 
 ### Why it's secure
