@@ -83,6 +83,7 @@ After key is saved it can be retreived in code
   <div id="widget-here"></div>
   
   <script>
+    import {axios} from 'axios';
 
     const placeForWidget = document.getElementById("widget-here");
 
@@ -92,20 +93,46 @@ After key is saved it can be retreived in code
     zeroID.openAIKey()
        .then(res => res.value)
        .then(
-          key => {
-            // your logic here
-          }
+          key => generateTextFromPhrase(
+            "Once upon a time...", 
+            key
+          )
         )
         .catch(console.err);
         
+
+    function generateTextFromPhrase(phrase, apiKey) {
+      // Configure your request headers with your API key
+      const headers = {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      };
+
+      // Set up the data for the API request
+      const data = {
+        prompt: phrase,
+        max_tokens: 50, // Adjust the desired length of generated text
+        engine: 'davinci',
+      };
+
+      // Make a POST request to the OpenAI API
+      axios.post('https://api.openai.com/v1/engines/davinci/completions', data, { headers })
+        .then((response) => {
+          const generatedText = response.data.choices[0].text;
+          console.log('Generated Text:', generatedText);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      }     
   </script>
 
 </body>
 ```
 
-### Also 
+### Advanced 
 
-You can find various
+The SDK can be used not only for OpenAI for the custom key-value pairs storing.
 
 | Name            | Description               | Call example                        |
 |-----------------|---------------------------|-------------------------------------|
@@ -114,3 +141,43 @@ You can find various
 | `openAIKey`     | Return OpenAI key         | `zeroID.openAIKey()`                |
 | `addCredential` | Add new credential        | `zeroID.addCredential(name, value)` |
 
+```html
+<body>
+  ...
+  <div id="widget-here"></div>
+  
+  <script>
+
+    const placeForWidget = document.getElementById("widget-here");
+
+    const zeroID = ZeroIdSdk.initStorage(placeForWidget);
+
+    // using you OpenAI key
+    await zeroID.addCredential(
+      "AIRTABLE_KEY",
+      "ww121490j304jjwq"
+    );
+
+    await zeroID
+       .credential("AIRTABLE_KEY")
+       .then(res => res.value)
+       .then(console.log);
+    
+    // outputs: "ww121490j304jjwq"
+
+    await zeroID
+       .credentials()
+       .then(console.log);
+
+    /* {
+        [ 
+          {"AIRTABLE_KEY": "ww..jwq"},
+          {"OPENAI_API_KEY": "sk-..."}, 
+        ]
+    } 
+    
+        
+  </script>
+
+</body>
+```
