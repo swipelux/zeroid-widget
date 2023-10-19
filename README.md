@@ -67,13 +67,13 @@ Now you can make the widget shown
 </html>
 ```
 
-<img width="500px" src="public/storage_1.png">
+<img width="500px" src="zeroid/public/storage_1.png">
 
 ### Use widget
 
 When "My keys" button clicked for the first time click the Metamask signature request appears
 
-<img width="500px" src="public/sigrequest.png">
+<img width="500px" src="zeroid/public/sigrequest.png">
 
 It is being used to identify the user by wallet, so then we can prepare a personal key bucket for you. <b>No fee is charged.</b>
 
@@ -87,7 +87,7 @@ Where you can
 
 your <b>OpenAI API Key</b>
 
-<img width="500px" src="public/storage_2.png">
+<img width="500px" src="zeroid/public/storage_2.png">
 
 ### Use your keys in code
 
