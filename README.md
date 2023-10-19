@@ -2,31 +2,54 @@
 
 ## How to use
 
-To install the ZeroID SDK into your project, you should add our script.
+### Install
+
+Just add the script tag to your head section
 
 ```html
 <head>
   ...
+  
   <script src="https://zeroid.swipelux.com/sdk.js"></script>
+  ...
 </head>
 ```
 
-After this, the ZeroIdSdk object is available in the Window.
+### Use
 
-To initialize it:
+In the body section, add an HTML element for the widget to get placed to.
 
 ```html
 <body>
-  <div id="root"></div>
-  <script>
-    const zeroID = ZeroIdSdk.initStorage(document.getElementById('root'));
-  </script>
+  ...
+  <!-- div with sample id for the widget placement in further -->
+  <div id="widget-here"></div>
+  ...
 </body>
 ```
 
-Example:
+Now you can make the widget shown
+
+```html
+<body>
+  ...
+  <div id="widget-here"></div>
+  
+  <script>
+
+    const placeForWidget = document.getElementById("widget-here");
+
+    const zeroID = ZeroIdSdk.initStorage(placeForWidget);
+
+  </script>
+
+</body>
+```
 
 <img width="500px" src="public/storage_1.png">
+
+
+
 <img width="500px" src="public/storage_2.png">
 
 ## API
