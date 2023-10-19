@@ -67,11 +67,18 @@ Now you can make the widget shown
 </html>
 ```
 
+After initialization the widget would look like this:
+
 <img width="500px" src="zeroid/public/storage_1.png">
 
 ### Use widget
 
-When "My keys" button clicked for the first time click the Metamask signature request appears
+Using the widget requires Metamask to be installed. 
+MetaMask is the most popular Ethereum wallet. It is a browser extension that allows you to interact with Ethereum dApps from your browser.
+You can find out more about it on the [official website](https://metamask.io/).
+
+
+When "My keys" button clicked for the first time click the Metamask signature request appears.
 
 <img width="500px" src="zeroid/public/sigrequest.png">
 
