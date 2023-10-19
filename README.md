@@ -1,4 +1,4 @@
-# ZeroID
+# ZeroID Key Storage
 
 ## How to use
 
@@ -15,7 +15,7 @@ Just add the script tag to your head section
 </head>
 ```
 
-### Use
+### Display widget
 
 In the body section, add an HTML element for the widget to get placed to.
 
@@ -48,27 +48,60 @@ Now you can make the widget shown
 
 <img width="500px" src="public/storage_1.png">
 
+### Use widget
 
+When "My keys" button clicked for the first time click the Metamask signature request appears
+
+<img width="500px" src="public/sigrequest.png">
+
+It is being used to identify the user by wallet so then we can prepare a personal key bucket for you. <b>No fee is charged.</b>
+
+Once signed, the key management pop-up is shown,
+
+Where you can
+
+- add
+- update
+- remove 
+
+your <b>OpenAI API Key</b>
 
 <img width="500px" src="public/storage_2.png">
 
-## API
+### Use your keys in code
 
-After initialization, you can use the SDK methods. For example:
+After key is saved it can be retreived in code
 
-Example:
+
 ```html
-<script>
-    const zeroID = ZeroIdSdk.initStorage(document.getElementById('root'));
-    zeroID.openAIKey().then(res => {
-        const openAIKey = res.value;
-        // You can now use your openAIKey to call 3rd party services
-        console.log(openAIKey);
-    }).catch(err => {
-        console.log(err);
-    });
-</script>
+<body>
+  ...
+  <div id="widget-here"></div>
+  
+  <script>
+
+    const placeForWidget = document.getElementById("widget-here");
+
+    const zeroID = ZeroIdSdk.initStorage(placeForWidget);
+
+    // using you OpenAI key
+    zeroID.openAIKey()
+       .then(res => res.value)
+       .then(
+          key => {
+            // your logic here
+          }
+        )
+        .catch(console.err);
+        
+  </script>
+
+</body>
 ```
+
+### Also 
+
+You can find various
 
 | Name            | Description               | Call example                        |
 |-----------------|---------------------------|-------------------------------------|
