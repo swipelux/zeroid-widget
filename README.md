@@ -2,6 +2,10 @@
 
 ## How to use
 
+1. Install SDK
+2. Display the widget for the end user
+3. Use end users API keys in your project
+
 ### Install
 
 Just add the script tag to your head section
