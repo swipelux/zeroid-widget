@@ -58,23 +58,23 @@ When "My keys" button clicked for the first time click the Metamask signature re
 
 <img width="500px" src="public/sigrequest.png">
 
-It is being used to identify the user by wallet so then we can prepare a personal key bucket for you. <b>No fee is charged.</b>
+It is being used to identify the user by wallet so then we can prepare a personal key bucket for him. <b>No fee is charged.</b>
 
 Once signed, the key management pop-up is shown,
 
-Where you can
+Where user can
 
 - add
 - update
 - remove 
 
-your <b>OpenAI API Key</b>
+his <b>OpenAI API Key</b>
 
 <img width="500px" src="public/storage_2.png">
 
 ### Use your keys in code
 
-After key is saved it can be retreived in code
+After key is saved it can be retreived in code by the application developer
 
 
 ```html
@@ -129,6 +129,12 @@ After key is saved it can be retreived in code
 
 </body>
 ```
+
+### Why it's secure
+
+Whilst the API-key are retrieved on client-side — user can see the exact code operating on it. 
+
+Furthermore, instead of sharing users keys in public server environments you can now pass them unrevealed through the channel provided by authorized entity.
 
 ### Advanced 
 
