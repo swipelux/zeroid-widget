@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your site</title>
+    <script src="https://zeroid.swipelux.com/sdk.js"></script>
+</head>
+<body>
+<!-- div with sample id for the widget placement in further -->
+<div id="widget-here"></div>
+<script>
+
+    const placeForWidget = document.getElementById("widget-here");
+
+    const zeroID = ZeroIdSdk.initStorage(placeForWidget);
+
+    // using you OpenAI key
+    zeroID.openAIKey()
+        .then(res => res.value)
+        .then(openAIKey => {
+            console.log('', openAIKey)
+            // your logic here
+
+        })
+        .catch(console.error);
+
+</script>
+</body>
+</html>

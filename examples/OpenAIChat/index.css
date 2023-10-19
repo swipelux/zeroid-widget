@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.conversation {
+    flex-grow: 1;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    padding: 10px;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.input-with-button {
+    display: flex;
+    align-items: stretch;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+button[type="submit"] {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+
+.message {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    max-width: 70%;
+}
+
+.user {
+    background-color: #007bff;
+    color: white;
+    align-self: flex-end;
+}
+
+.assistant {
+    background-color: #34c759;
+    color: white;
+    align-self: flex-start;
+}
+
+.message-content {
+    word-wrap: break-word;
+}

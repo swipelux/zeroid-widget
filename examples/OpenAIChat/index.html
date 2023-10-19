@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple HTML Form</title>
+  <!-- Install ZeroID SDK -->
+  <script src="https://zeroid.swipelux.com/sdk.js"></script>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+<header>
+  <h1>Chat GPT messenger</h1>
+  <div id="zero-id"></div>
+</header>
+<section>
+  <div class="conversation" id="conversation"></div>
+  <form>
+    <div class="input-with-button">
+      <input autofocus required type="text" name="message" id="message" placeholder="Your question">
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+</section>
+<script src="index.js"></script>
+</body>
+</html>
