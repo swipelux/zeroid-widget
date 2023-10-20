@@ -8,15 +8,20 @@
 
 ### Install
 
-Just add the script tag to your head section
+Just add the script tag to your head section of your HTML page.
 
 ```html
-<head>
-  ...
-  
-  <script src="https://zeroid.swipelux.com/sdk.js"></script>
-  ...
-</head>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Your site</title>
+        <script src="https://zeroid.swipelux.com/sdk.js"></script>
+    </head>
+    <body>
+    </body>
+</html>
+
 ```
 
 ### Display widget
@@ -24,41 +29,60 @@ Just add the script tag to your head section
 In the body section, add an HTML element for the widget to get placed to.
 
 ```html
-<body>
-  ...
-  <!-- div with sample id for the widget placement in further -->
-  <div id="widget-here"></div>
-  ...
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Your site</title>
+        <script src="https://zeroid.swipelux.com/sdk.js"></script>
+    </head>
+    <body>
+        <!-- div with sample id for the widget placement in further -->
+        <div id="widget-here"></div>
+    </body>
+</html>
 ```
 
 Now you can make the widget shown
 
 ```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your site</title>
+    <script src="https://zeroid.swipelux.com/sdk.js"></script>
+</head>
 <body>
-  ...
-  <div id="widget-here"></div>
-  
-  <script>
-
+<!-- div with sample id for the widget placement in further -->
+<div id="widget-here"></div>
+<script>
+    
     const placeForWidget = document.getElementById("widget-here");
 
     const zeroID = ZeroIdSdk.initStorage(placeForWidget);
 
-  </script>
-
+</script>
 </body>
+</html>
 ```
 
-<img width="500px" src="public/storage_1.png">
+After initialization the widget would look like this:
+
+<img width="500px" src="zeroid/public/storage_1.png">
 
 ### Use widget
 
-When "My keys" button clicked for the first time click the Metamask signature request appears
+Using the widget requires Metamask to be installed. 
+MetaMask is the most popular Ethereum wallet. It is a browser extension that allows you to interact with Ethereum dApps from your browser.
+You can find out more about it on the [official website](https://metamask.io/).
 
-<img width="500px" src="public/sigrequest.png">
 
-It is being used to identify the user by wallet so then we can prepare a personal key bucket for him. <b>No fee is charged.</b>
+When "My keys" button clicked for the first time click the Metamask signature request appears.
+
+<img width="500px" src="zeroid/public/sigrequest.png">
+
+It is being used to identify the user by wallet, so then we can prepare a personal key bucket for you. <b>No fee is charged.</b>
 
 Once signed, the key management pop-up is shown,
 
@@ -70,64 +94,80 @@ Where user can
 
 his <b>OpenAI API Key</b>
 
-<img width="500px" src="public/storage_2.png">
+<img width="500px" src="zeroid/public/storage_2.png">
 
 ### Use your keys in code
 
-After key is saved it can be retreived in code by the application developer
+After key is saved it can be retrieved in code by the application developer
 
 
 ```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your site</title>
+    <script src="https://zeroid.swipelux.com/sdk.js"></script>
+</head>
 <body>
-  ...
-  <div id="widget-here"></div>
-  
-  <script>
-    import {axios} from 'axios';
-
+<!-- div with sample id for the widget placement in further -->
+<div id="widget-here"></div>
+<button id="btn">Create a request to OpenAI</button>
+<div style="display: none" id="loading">Loading...</div>
+<script>
     const placeForWidget = document.getElementById("widget-here");
-
     const zeroID = ZeroIdSdk.initStorage(placeForWidget);
+    const btn = document.getElementById("btn");
+    const loading = document.getElementById("loading");
 
-    // using you OpenAI key
-    zeroID.openAIKey()
-       .then(res => res.value)
-       .then(
-          key => generateTextFromPhrase(
-            "Once upon a time...", 
-            key
-          )
-        )
-        .catch(console.err);
-        
+    btn.onclick = () => {
+        loading.style.display = "block";
+        btn.style.display = "none";
+        // using you OpenAI key
+        zeroID.openAIKey()
+                .then(res => res.value)
+                .then(key => generateTextFromPhrase(
+                                "Once upon a time...",
+                                key
+                        )
+                )
+                .then(res => res.json())
+                .then(res => {
+                    return res.choices[0].message.content;
+                })
+                .then(alert)
+                .catch(console.err)
+                .finally(() => {
+                    loading.style.display = "none";
+                    btn.style.display = "block";
+                });
+    }
 
     function generateTextFromPhrase(phrase, apiKey) {
-      // Configure your request headers with your API key
-      const headers = {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      };
+        const OPEN_AI_API_PATH = 'https://api.openai.com/v1/chat/completions';
 
-      // Set up the data for the API request
-      const data = {
-        prompt: phrase,
-        max_tokens: 50, // Adjust the desired length of generated text
-        engine: 'davinci',
-      };
+        const message = {
+            role: 'user',
+            content: phrase,
+        };
 
-      // Make a POST request to the OpenAI API
-      axios.post('https://api.openai.com/v1/engines/davinci/completions', data, { headers })
-        .then((response) => {
-          const generatedText = response.data.choices[0].text;
-          console.log('Generated Text:', generatedText);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
+        const requestData = {
+            messages: [message],
+            model: "gpt-3.5-turbo",
+        };
+
+        return fetch(OPEN_AI_API_PATH, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify(requestData)
         });
-      }     
-  </script>
-
+    }
+</script>
 </body>
+</html>
 ```
 
 ### Why it's secure
@@ -180,8 +220,8 @@ The SDK can be used not only for OpenAI for the custom key-value pairs storing.
           {"AIRTABLE_KEY": "ww..jwq"},
           {"OPENAI_API_KEY": "sk-..."}, 
         ]
-    } 
-    
+    }
+     */
         
   </script>
 
