@@ -82,7 +82,7 @@ When "My keys" button clicked for the first time click the Metamask signature re
 
 <img width="500px" src="zeroid/public/sigrequest.png">
 
-It is being used to identify the user by wallet so then we can prepare a personal key bucket for him. <b>No fee is charged.</b>
+It is being used to identify the user by wallet, so then we can prepare a personal key bucket for you. <b>No fee is charged.</b>
 
 Once signed, the key management pop-up is shown,
 
