@@ -112,21 +112,59 @@ After key is saved it can be retrieved in code by the application developer
 <body>
 <!-- div with sample id for the widget placement in further -->
 <div id="widget-here"></div>
+<button id="btn">Create a request to OpenAI</button>
+<div style="display: none" id="loading">Loading...</div>
 <script>
-
     const placeForWidget = document.getElementById("widget-here");
-
     const zeroID = ZeroIdSdk.initStorage(placeForWidget);
+    const btn = document.getElementById("btn");
+    const loading = document.getElementById("loading");
 
-    // using you OpenAI key
-    zeroID.openAIKey()
-            .then(res => res.value)
-            .then(openAIKey => {
-                // your logic here
-                
-            })
-            .catch(console.error);
+    btn.onclick = () => {
+        loading.style.display = "block";
+        btn.style.display = "none";
+        // using you OpenAI key
+        zeroID.openAIKey()
+                .then(res => res.value)
+                .then(key => generateTextFromPhrase(
+                                "Once upon a time...",
+                                key
+                        )
+                )
+                .then(res => res.json())
+                .then(res => {
+                    return res.choices[0].message.content;
+                })
+                .then(alert)
+                .catch(console.err)
+                .finally(() => {
+                    loading.style.display = "none";
+                    btn.style.display = "block";
+                });
+    }
 
+    function generateTextFromPhrase(phrase, apiKey) {
+        const OPEN_AI_API_PATH = 'https://api.openai.com/v1/chat/completions';
+
+        const message = {
+            role: 'user',
+            content: phrase,
+        };
+
+        const requestData = {
+            messages: [message],
+            model: "gpt-3.5-turbo",
+        };
+
+        return fetch(OPEN_AI_API_PATH, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify(requestData)
+        });
+    }
 </script>
 </body>
 </html>
@@ -182,8 +220,8 @@ The SDK can be used not only for OpenAI for the custom key-value pairs storing.
           {"AIRTABLE_KEY": "ww..jwq"},
           {"OPENAI_API_KEY": "sk-..."}, 
         ]
-    } 
-    
+    }
+     */
         
   </script>
 
