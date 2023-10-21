@@ -16,34 +16,8 @@ The central concept of this project is to demonstrate how ZeroID can be seamless
 
 ## Usage
 
-1. **Install Node.js:** If you don't already have Node.js, [download and install it from the official website](https://nodejs.org/).
+1. Clone or download this repository to your local machine.
 
-2. **Clone the Repository:** Use the `git clone` command or download the ZIP archive of this repository and extract it on your computer.
+2. Open the `index.html` file in a web browser to access the Chat GPT Messenger with ZeroID integration.
 
-3.  **Install Dependencies:** Run the following command to install the necessary dependencies:
-
-    ```bash
-    npm install
-    ```
-
-4. **Start the Project:** Use the following command to start the local development server:
-
-    ```bash
-    npm run dev
-    ```
-
-   The project will be available at `http://localhost:3000` in your web browser.
-
-## Additional Commands
-
-- `npm run build`: Builds the project for production in the `dist` folder.
-- `npm run serve`: Launches a server to preview the built project after running `npm run build`.
-
-## Project Structure
-
-- `src`: Source code of the project.
-- `public`: Static resources.
-- `package.json`: File describing project dependencies and scripts.
-- `vite.config.js`: Vite configuration.
-
----
+3. Initiate conversations by typing questions or messages in the input field and clicking the "Submit" button. The chatbot, empowered by OpenAI and secured by ZeroID, will provide responses.
