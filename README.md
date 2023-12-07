@@ -2,6 +2,14 @@
 
 ZeroID is ingeniously applied to simplify API management for developers and users. With the ability to securely store, deploy, and access API keys without the hassle of manual cloning or input, it's a game-changer for the modern developer. This not only streamlines the process but also enhances security, making it a valuable tool in the realm of web3 and decentralized technologies.
 
+Unlock the true potential of your projects without getting bogged down by manual API key management.
+
+1) Seamless Integration Easily integrate ZeroID into your open-source projects and AI agents.
+
+2) User-Friendly Interface - Designed with non-technical users in mind. No coding skills required.
+
+3) Secure Storage - Your API keys are stored securely, ensuring data privacy and protection.
+
 ## How to use
 
 1. Install SDK
