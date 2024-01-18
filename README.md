@@ -136,7 +136,7 @@ After key is saved it can be retrieved in code by the application developer
         loading.style.display = "block";
         btn.style.display = "none";
         // using you OpenAI key
-        zeroID.openAIKey()
+        zeroID.getOpenAIKey()
                 .then(res => res.value)
                 .then(key => generateTextFromPhrase(
                                 "Once upon a time...",
@@ -196,7 +196,7 @@ The SDK can be used not only for OpenAI for the custom key-value pairs storing.
 |-----------------|---------------------------|-------------------------------------|
 | `credentials`   | Return all credentials    | `zeroID.credentials()`              |
 | `credential`    | Return credential by name | `zeroID.credential(name)`           |
-| `openAIKey`     | Return OpenAI key         | `zeroID.openAIKey()`                |
+| `getOpenAIKey`  | Return OpenAI key         | `zeroID.getOpenAIKey()`             |
 | `addCredential` | Add new credential        | `zeroID.addCredential(name, value)` |
 
 ```html
