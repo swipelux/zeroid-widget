@@ -61,7 +61,7 @@ async function sendToOpenAI(text, conversation) {
         model: "gpt-3.5-turbo",
     };
 
-    const apiKey = (await zeroID.openAIKey()).value;
+    const apiKey = (await zeroID.getOpenAIKey()).value;
 
     // Make a POST request to OpenAI using fetch
     const response = await fetch(OPEN_AI_API_PATH, {

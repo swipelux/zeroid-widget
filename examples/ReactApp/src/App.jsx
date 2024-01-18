@@ -21,7 +21,7 @@ function App() {
             throw new Error("ZeroID widget not initialized");
         }
 
-        const res = await zeroIDWidget.openAIKey();
+        const res = await zeroIDWidget.getOpenAIKey();
         return res.value;
     }
 

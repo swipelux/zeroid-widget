@@ -20,7 +20,7 @@
         loading.style.display = "block";
         btn.style.display = "none";
         // using you OpenAI key
-        zeroID.openAIKey()
+        zeroID.getOpenAIKey()
             .then(res => res.value)
             .then(key => generateTextFromPhrase(
                     "Once upon a time...",
